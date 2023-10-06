@@ -23,5 +23,5 @@ To use PenguAPI, you can either deploy it yourself or use a hosted version.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/pengu-api.git
+   git clone https://github.com/penguapi/pengu-api.git
    cd pengu-api
