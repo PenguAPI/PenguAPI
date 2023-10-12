@@ -31,4 +31,3 @@ To use PenguAPI, you can either deploy it yourself or use a hosted version.
 - Text On Image
 - History Facts
 - Random Fact
-- Law Fact
