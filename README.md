@@ -1,6 +1,6 @@
 # PenguAPI
 
-PenguAPI is an open-source API that provides [brief description of what the API does].
+PenguAPI is an open-source API that provides a lot of free AI API's!
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ PenguAPI is an open-source API that provides [brief description of what the API 
 - [License](#license)
 
 ## Getting Started
-
+Just Copy The API's Into The Workers!
 ### Installation
 
 To use PenguAPI, you can either deploy it yourself or use a hosted version.
