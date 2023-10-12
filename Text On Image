@@ -1,0 +1,65 @@
+addEventListener('fetch', (event) => {
+  event.respondWith(handleRequest(event.request));
+});
+
+async function handleRequest(request) {
+  const url = new URL(request.url);
+
+  // Parse the query parameter "text" from the URL
+  const text = url.searchParams.get('text');
+
+  if (!text) {
+    return new Response('Text parameter is missing', { status: 400 });
+  }
+
+  try {
+    // You can customize these values as needed
+    const fontSize = 30;
+    const color = 'red';
+    const x = 50;
+    const y = 50;
+
+    // You can customize the image URL here
+    const imageUrl = 'https://example.com/image.jpg';
+
+    // Fetch the image from the source
+    const imageResponse = await fetch(imageUrl);
+
+    if (!imageResponse.ok) {
+      return new Response('Image not found or accessible', { status: 404 });
+    }
+
+    // Convert the image response to a buffer
+    const imageBuffer = await imageResponse.arrayBuffer();
+
+    // Create a new image using the fetched image
+    const imageBlob = new Blob([imageBuffer], {
+      type: imageResponse.headers.get('Content-Type'),
+    });
+    const imageDataUrl = URL.createObjectURL(imageBlob);
+
+    // Create a canvas and draw the image
+    const canvas = new OffscreenCanvas(1, 1);
+    const ctx = canvas.getContext('2d');
+
+    const img = new Image();
+    img.src = imageDataUrl;
+    await img.decode();
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.drawImage(img, 0, 0);
+
+    // Add text to the image
+    ctx.font = `${fontSize}px Arial`;
+    ctx.fillStyle = color;
+    ctx.fillText(text, x, y);
+
+    // Convert the canvas to a data URL
+    const finalImageDataUrl = canvas.toDataURL('image/jpeg');
+
+    // Serve the final image
+    return fetch(finalImageDataUrl);
+  } catch (error) {
+    return new Response('An error occurred: ' + error, { status: 500 });
+  }
+}
