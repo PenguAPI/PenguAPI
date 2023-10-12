@@ -1,0 +1,32 @@
+const historicalFacts = [
+    "The Great Wall of China is over 13,000 miles long.",
+    "Marie Curie was the first woman to win a Nobel Prize.",
+    "The American Revolution began in 1775.",
+    "The Eiffel Tower was completed in 1889.",
+    "The Wright brothers' first powered flight was in 1903.",
+    "The first computer programmer was Ada Lovelace.",
+    "The moon landing took place on July 20, 1969.",
+    "The Titanic sank on its maiden voyage in 1912.",
+    "The Berlin Wall fell in 1989, leading to German reunification.",
+    "The Renaissance period in art and culture began in the 14th century."
+];
+// Add Random Facts
+addEventListener('fetch', (event) => {
+    event.respondWith(handleRequest(event.request));
+});
+
+async function handleRequest(request) {
+    try {
+        // Choose a random fact
+        const randomFact = historicalFacts[Math.floor(Math.random() * historicalFacts.length)];
+
+        // Serve the random fact as JSON
+        return new Response(JSON.stringify({ fact: randomFact }), {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+    } catch (error) {
+        return new Response('An error occurred: ' + error, { status: 500 });
+    }
+}
