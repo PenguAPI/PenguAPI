@@ -25,3 +25,10 @@ To use PenguAPI, you can either deploy it yourself or use a hosted version.
    ```bash
    git clone https://github.com/penguapi/pengu-api.git
    cd pengu-api
+
+## Endpoints
+- Meta AI
+- Text On Image
+- History Facts
+- Random Fact
+- Law Fact
